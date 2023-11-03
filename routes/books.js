@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var books = require("../resources/books")
 
 
 router.get('/add', function(req, res, next) {
@@ -7,3 +8,9 @@ router.get('/add', function(req, res, next) {
 });
 
 module.exports = router;
+
+router.post('/save',function(req,res,next){
+  books.push({...req.body, _id:`00${books.length + 1}`})
+  res.redirect('/')
+})
+
