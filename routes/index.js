@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-//var books =require('../resources/books')
-var Book = require('../models/books')
+var books =require('../resources/books')
+
 
 /* GET home page. */
-router.get('/', async function(req, res, next) {
-  const books = await Book.find()
+router.get('/', function(req, res, next) {
+
   res.render('index', { title: 'Book App', bookList:books });
 
 });
