@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-//var books = require("../resources/books")
 const Books = require('../models/books')
 
 router.get('/add', function(req, res, next) {
@@ -9,7 +8,6 @@ router.get('/add', function(req, res, next) {
 });
 
 router.post('/save',async function(req,res,next){
-  //books.push({...req.body, _id:`00${books.length + 1}`})
   await Books.insertMany([req.body]);
   res.redirect('/')
 })
