@@ -23,4 +23,14 @@ router.post('/saveEdited/:_id',function(req,res,next){
   res.redirect('/')
 })
 
+router.get('/deleteBooks/:_id', function(req,res,next){
+  const currIndex = books.findIndex((book) => book._id === req.params._id );
+  
+  if (currIndex !== -1) {
+    books.splice(currIndex, 1);
+  
+  } 
+  res.redirect('/')
+})
+
 module.exports = router;
