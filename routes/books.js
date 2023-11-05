@@ -12,26 +12,21 @@ router.post('/save',async function(req,res,next){
   res.redirect('/')
 })
 
-/*router.get('/edit/:_id', function(req, res, next){
-  const book = books.find((book)=>book._id === req.params._id)
+router.get('/edit/:_id', async function(req, res, next){
+  const book = await Books.findOne({_id: req.params._id});
   res.render('editBooks', {title: "Edit Books", book})
 })
 
-router.post('/saveEdited/:_id',function(req,res,next){
-  const currIndex = books.findIndex((book)=>book._id === req.params._id)
-  books.splice(currIndex, 1, {...req.body, _id: req.params._id})
+router.post('/saveEdited/:_id',async function (req,res,next){
+  await Books.findOneAndUpdate({ _id: req.params._id }, { ...req.body })
   res.redirect('/')
 })
 
-router.get('/deleteBooks/:_id', function(req,res,next){
-  const currIndex = books.findIndex((book) => book._id === req.params._id );
-  
-  if (currIndex !== -1) {
-    books.splice(currIndex, 1);
-  
-  } 
+router.get('/deleteBooks/:_id', async function(req,res,next){
+  await Books.findOneAndDelete({ _id: req.params._id }, { ...req.body })
+
   res.redirect('/')
   
-})*/
+})
 
 module.exports = router;
